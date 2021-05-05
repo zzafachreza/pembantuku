@@ -60,6 +60,7 @@ export default function Login({navigation}) {
               height: 200,
               aspectRatio: 1,
               marginBottom: '10%',
+              alignSelf: 'center',
             }}
           />
           <Text
@@ -69,7 +70,16 @@ export default function Login({navigation}) {
               color: colors.black,
               // maxWidth: 230,
             }}>
-            Silahkan login untuk masuk ke aplikasi pembantuku
+            Silahkan login untuk masuk ke aplikasi
+          </Text>
+          <Text
+            style={{
+              fontFamily: fonts.secondary[600],
+              fontSize: windowWidth / 20,
+              color: colors.black,
+              // maxWidth: 230,
+            }}>
+            pembantuku
           </Text>
           <MyGap jarak={20} />
           <MyInput

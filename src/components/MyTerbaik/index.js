@@ -167,7 +167,7 @@ export default function MyTerbaik() {
           </Text>
         </View>
         <FlatList
-          horizontal
+          numColumns={2}
           data={data}
           renderItem={renderItem}
           keyExtractor={item => item.id}

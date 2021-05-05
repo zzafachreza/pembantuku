@@ -46,18 +46,18 @@ export default function GetStarted({navigation}) {
       source={require('../../assets/back.jpeg')}>
       <View
         style={{
+          flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Animated.Image
+        <Image
           source={require('../../assets/logo.png')}
           style={{
-            top: '0%',
-            opacity: opacity,
-            aspectRatio: 1.4,
-            resizeMode: 'center',
+            width: 200,
+            height: 200,
           }}
         />
+        <Text style={styles.title}>PEMBANTUKU</Text>
       </View>
 
       <MyButton
@@ -84,5 +84,11 @@ const styles = StyleSheet.create({
     // backgroundColor: 'white',
     flex: 1,
     padding: 10,
+  },
+  title: {
+    marginTop: 50,
+    fontFamily: fonts.secondary[800],
+    fontSize: 50,
+    color: colors.primary,
   },
 });

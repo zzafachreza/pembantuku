@@ -19,35 +19,6 @@ export default function Splash({navigation}) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
 
-  const bottom = new Animated.Value(windowWidth);
-  const opacity = new Animated.Value(0);
-  const bottomImage = new Animated.Value(-windowWidth);
-  const bottomSun = new Animated.Value(-windowWidth);
-
-  Animated.timing(bottom, {
-    toValue: 0,
-    duration: 1200,
-    useNativeDriver: false,
-  }).start();
-
-  Animated.timing(opacity, {
-    toValue: 1,
-    duration: 2000,
-    useNativeDriver: false,
-  }).start();
-
-  Animated.timing(bottomImage, {
-    toValue: -50,
-    duration: 1300,
-    useNativeDriver: false,
-  }).start();
-
-  Animated.timing(bottomSun, {
-    toValue: 0,
-    duration: 1300,
-    useNativeDriver: false,
-  }).start();
-
   useEffect(() => {
     const unsubscribe = getData('user').then(res => {
       console.log(res);
@@ -68,77 +39,33 @@ export default function Splash({navigation}) {
   }, []);
   return (
     <SafeAreaView style={styles.page}>
-      <View
-        style={{
-          top: '20%',
-          justifyContent: 'center',
-          alignItems: 'center',
-          // backgroundColor: 'red',
-        }}>
-        <Text
-          style={{
-            fontSize: windowWidth / 8,
-            fontFamily: fonts.secondary[900],
-            color: colors.primary,
-          }}>
-          PEMBANTUKU
-        </Text>
-        <Animated.Image
-          source={require('../../assets/logo.png')}
-          style={{
-            top: '-15%',
-            opacity: opacity,
-            aspectRatio: 1.4,
-            resizeMode: 'center',
-          }}
-        />
-      </View>
-
-      <View
-        style={{
-          paddingHorizontal: 20,
-        }}>
-        <Animated.View
-          style={{
-            width: windowWidth,
-            // borderRadius: 80 / 2,
-            right: bottomSun,
-            // bottom: bottomImage,
-            // margin: 10,
-            height: 10,
-            backgroundColor: colors.primary,
-          }}
-        />
-      </View>
-      <View
-        style={{
-          flex: 1,
-          // backgroundColor: 'red',
-          padding: 20,
-        }}>
-        <Animated.Text
-          style={{
-            marginTop: 20,
-            fontFamily: fonts.secondary[400],
-            fontSize: windowWidth / 20,
-            color: colors.black,
-            top: bottom,
-          }}>
-          Kami Adalah Penyedia Jasa kebutuhan asisten rumah tangga,
-          babysitter/perawat bayi, perawat Lansia , tukang kebun, sopir dan lain
-          -lain.
-        </Animated.Text>
-      </View>
+      <Image style={styles.image} source={require('../../assets/logo.png')} />
+      <Text style={styles.title}>PEMBANTUKU</Text>
+      <Text style={styles.subtitle}>By PT Feny Jaya Mandiri (Outsourcing)</Text>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   page: {
-    // backgroundColor: colors.primary,
+    backgroundColor: colors.primary,
+    justifyContent: 'center',
+    alignItems: 'center',
     flex: 1,
   },
   image: {
-    // aspectRatio: 1,
+    aspectRatio: 1,
+    width: 200,
+    height: 200,
+  },
+  title: {
+    fontFamily: fonts.secondary[800],
+    fontSize: 50,
+    color: colors.white,
+  },
+  subtitle: {
+    fontFamily: fonts.secondary[600],
+    fontSize: 18,
+    color: colors.white,
   },
 });

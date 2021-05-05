@@ -100,7 +100,12 @@ export default function Home({navigation}) {
               {user.nama_lengkap}
             </Text>
           </View>
-          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
             <Image
               style={{width: 80, height: 80}}
               source={require('../../assets/logo.png')}
