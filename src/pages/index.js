@@ -11,6 +11,9 @@ import Tambah from './Tambah';
 import List from './List';
 import ListDetail from './ListDetail';
 import Edit from './Edit';
+import Pelamar from './Pelamar';
+import PelamarDetail from './PelamarDetail';
+import PelamarSelesai from './PelamarSelesai';
 
 export {
   Splash,
@@ -26,4 +29,7 @@ export {
   List,
   Edit,
   ListDetail,
+  Pelamar,
+  PelamarDetail,
+  PelamarSelesai,
 };

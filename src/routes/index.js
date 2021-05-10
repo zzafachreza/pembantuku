@@ -36,6 +36,9 @@ import {
   Success2,
   ListDetail,
   Edit,
+  Pelamar,
+  PelamarDetail,
+  PelamarSelesai,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
@@ -70,6 +73,30 @@ export default function Router() {
           headerShown: false,
         }}
       />
+
+      <Stack.Screen
+        name="Pelamar"
+        component={Pelamar}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="PelamarDetail"
+        component={PelamarDetail}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="PelamarSelesai"
+        component={PelamarSelesai}
+        options={{
+          headerShown: false,
+        }}
+      />
+
       <Stack.Screen
         name="Success"
         component={Success}

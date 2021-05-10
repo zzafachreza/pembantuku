@@ -3,9 +3,9 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {fonts} from '../../utils/fonts';
 import {Icon} from 'react-native-elements';
 
-export default function MyButton({title, warna, onPress, Icons}) {
+export default function MyButton({title, warna, onPress, Icons, radius = 10}) {
   return (
-    <TouchableOpacity style={styles(warna).btn} onPress={onPress}>
+    <TouchableOpacity style={styles(warna, radius).btn} onPress={onPress}>
       <Icon type="ionicon" name={Icons} color="white" size={18} />
       <Text
         style={{
@@ -20,11 +20,11 @@ export default function MyButton({title, warna, onPress, Icons}) {
   );
 }
 
-const styles = (warna) =>
+const styles = (warna, radius) =>
   StyleSheet.create({
     btn: {
       height: 50,
-      borderRadius: 10,
+      borderRadius: radius,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: warna,

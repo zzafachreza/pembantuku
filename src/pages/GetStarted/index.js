@@ -74,6 +74,13 @@ export default function GetStarted({navigation}) {
         warna={colors.secondary}
         onPress={() => navigation.navigate('Register')}
       />
+      <MyGap jarak={20} />
+      <MyButton
+        title="AJUKAN LAMARAN"
+        Icons="send"
+        warna={colors.tertiary}
+        onPress={() => navigation.navigate('Pelamar')}
+      />
       <Animated.View style={{height: top}} />
     </ImageBackground>
   );
