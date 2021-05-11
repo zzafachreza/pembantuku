@@ -9,6 +9,7 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   TouchableOpacity,
+  TouchableNativeFeedback,
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {colors} from '../../utils/colors';
@@ -111,6 +112,53 @@ export default function Home({navigation}) {
               source={require('../../assets/logo.png')}
             />
           </View>
+        </View>
+        <View style={{padding: 10, backgroundColor: colors.primary}}>
+          <TouchableNativeFeedback
+            onPress={() => navigation.navigate('Search')}>
+            <View
+              style={{
+                flex: 1,
+                paddingLeft: 20,
+                borderWidth: 1,
+                height: 45,
+                borderRadius: 10,
+                borderColor: colors.white,
+                color: colors.white,
+                flexDirection: 'row',
+                fontSize: 18,
+                justifyContent: 'center',
+              }}>
+              <View
+                style={{
+                  flex: 2,
+                  justifyContent: 'center',
+                }}>
+                <Text
+                  style={{
+                    fontFamily: 'Montserrat-Light',
+                    fontSize: 18,
+                    color: colors.white,
+                  }}>
+                  Cari Pembantu...
+                </Text>
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'flex-end',
+                  paddingRight: 20,
+                }}>
+                <Icon
+                  type="font-awesome"
+                  name="search"
+                  color={colors.white}
+                  size={18}
+                />
+              </View>
+            </View>
+          </TouchableNativeFeedback>
         </View>
         <MyCarouser />
         <MyKategori />

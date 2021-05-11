@@ -1,34 +1,31 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
   View,
-  ImageBackground,
-  TouchableOpacity,
-  Image,
+  SafeAreaView,
+  TextInput,
   FlatList,
+  TouchableOpacity,
+  ActivityIndicator,
+  StatusBar,
+  Image,
+  ScrollView,
 } from 'react-native';
+import {MyHeader} from '../../components';
 import {Icon} from 'react-native-elements';
-import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import {colors} from '../../utils/colors';
+import LottieView from 'lottie-react-native';
 import {fonts} from '../../utils/fonts';
 import 'intl';
 import 'intl/locale-data/jsonp/en';
 
-export default function MyTerbaik() {
-  useEffect(() => {
-    // axios
-    //   .get(
-    //     'https://ayokulakan.com/api/barang?limit=11&includes=creator,attachments&disc_barang!=null',
-    //   )
-    //   .then(res => {
-    //     console.log(res.data.data);
-    //     // setData(res.data.data);
-    //   });
-  }, []);
+export default function Search({navigation, route}) {
+  const [key, setKey] = useState('');
+  const [cari, setCari] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const navigation = useNavigation();
   const [data, setData] = useState([
     {
       id: 0,
@@ -37,7 +34,7 @@ export default function MyTerbaik() {
       harga: 2000000,
       kategori: 'Home Care',
       image:
-        'https://pembantuku.id/sites/default/files/IMG_20210501_080502.jpg',
+        'https://pembantuku.id/sites/default/files/styles/mediaum_large_pportrait/public/IMG-20210501-WA0015.jpg?itok=X7BGWX6P',
     },
     {
       id: 1,
@@ -46,7 +43,7 @@ export default function MyTerbaik() {
       harga: 3200000,
       kategori: 'Home Care',
       image:
-        'https://pembantuku.id/sites/default/files/styles/mediaum_large_pportrait/public/IMG_20210504_142254.jpg?itok=NXqMajpa',
+        'https://pembantuku.id/sites/default/files/IMG_20210501_080502.jpg',
     },
     {
       id: 2,
@@ -136,40 +133,117 @@ export default function MyTerbaik() {
     );
   };
 
+  const pencarian = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setCari(true);
+      setLoading(false);
+    }, 500);
+  };
+
   return (
-    <View>
-      <View
+    <>
+      <ScrollView
         style={{
           flex: 1,
-          padding: 10,
-          backgroundColor: '#FFF',
         }}>
         <View
           style={{
+            // flex: 1,
+            backgroundColor: colors.primary,
+            height: 70,
             flexDirection: 'row',
-            // justifyContent: 'center',
-            alignItems: 'center',
-            paddingVertical: 5,
+
+            padding: 10,
           }}>
-          <Icon type="ionicon" name="grid" color={colors.primary} size={16} />
-          <Text
+          <View
             style={{
-              fontFamily: 'Montserrat-SemiBold',
-              color: colors.primary,
-              left: 10,
-              fontSize: 16,
+              flex: 1,
+              flexDirection: 'row',
             }}>
-            DAFTAR PEMBANTU TERBAIK
-          </Text>
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{
+                padding: 10,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Icon type="ionicon" name="arrow-back" color="#FFF" size={25} />
+            </TouchableOpacity>
+            <View
+              style={{
+                flex: 1,
+              }}>
+              <TextInput
+                value={key}
+                onSubmitEditing={pencarian}
+                onChangeText={value => setKey(value)}
+                selectionColor={'#FFF'}
+                autoCapitalize="none"
+                autoFocus
+                style={{
+                  paddingLeft: 20,
+                  borderWidth: 1,
+                  height: 45,
+                  borderRadius: 10,
+                  borderColor: '#FFF',
+                  color: '#FFF',
+                  flexDirection: 'row',
+                  fontSize: 18,
+                  justifyContent: 'center',
+                }}
+              />
+            </View>
+          </View>
         </View>
-        <FlatList
-          numColumns={2}
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
+        {cari && (
+          <View
+            style={{
+              flex: 1,
+              padding: 10,
+              backgroundColor: '#FFF',
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                // justifyContent: 'center',
+                alignItems: 'center',
+                paddingVertical: 5,
+              }}>
+              <Icon
+                type="ionicon"
+                name="search"
+                color={colors.primary}
+                size={16}
+              />
+              <Text
+                style={{
+                  fontFamily: 'Montserrat-SemiBold',
+                  color: colors.primary,
+                  left: 10,
+                  fontSize: 16,
+                }}>
+                Kata Kunci "{key}"
+              </Text>
+            </View>
+            <FlatList
+              numColumns={2}
+              data={data}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+            />
+          </View>
+        )}
+      </ScrollView>
+      {loading && (
+        <LottieView
+          source={require('../../assets/animation.json')}
+          autoPlay
+          loop
+          style={{flex: 1, backgroundColor: colors.primary}}
         />
-      </View>
-    </View>
+      )}
+    </>
   );
 }
 

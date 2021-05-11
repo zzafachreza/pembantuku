@@ -91,54 +91,104 @@ export default function MyKategori() {
           <IconPemayaran
             title="Driver"
             iconname="car"
-            onPress={() => navigation.navigate('Pulsa')}
+            onPress={() =>
+              navigation.navigate('Kategori', {
+                kategori: 'driver',
+                menu: 'Driver',
+              })
+            }
           />
           <IconPemayaran
             title="Tukang Kebun"
             iconname="color-fill"
-            onPress={() => navigation.navigate('Pulsa')}
+            onPress={() =>
+              navigation.navigate('Kategori', {
+                kategori: 'tukang_kebun',
+                menu: 'Tukang Kebun',
+              })
+            }
           />
           <IconPemayaran
             title="Home Care"
             iconname="home"
-            onPress={() => navigation.navigate('Pulsa')}
+            onPress={() =>
+              navigation.navigate('Kategori', {
+                kategori: 'home_care',
+                menu: 'Home Care',
+              })
+            }
           />
           <IconPemayaran
             title="Pet Caretaker"
             iconname="paw"
-            onPress={() => navigation.navigate('Pulsa')}
+            onPress={() =>
+              navigation.navigate('Kategori', {
+                kategori: 'pet_caretaker',
+                menu: 'Pet Caretaker',
+              })
+            }
           />
           <IconPemayaran
             title="SPG"
             iconname="woman"
-            onPress={() => navigation.navigate('Pulsa')}
+            onPress={() =>
+              navigation.navigate('Kategori', {
+                kategori: 'spg',
+                menu: 'SPG',
+              })
+            }
           />
 
           <IconPemayaran
             title="Asisten Rumah"
             iconname="woman"
-            onPress={() => navigation.navigate('Pulsa')}
+            onPress={() =>
+              navigation.navigate('Kategori', {
+                kategori: 'asisten_rumah',
+                menu: 'Asisten Rumah',
+              })
+            }
           />
           <IconPemayaran
             title="Juru Masak"
             iconname="restaurant"
-            onPress={() => navigation.navigate('Pulsa')}
+            onPress={() =>
+              navigation.navigate('Kategori', {
+                kategori: 'juru_masak',
+                menu: 'Juru Masak',
+              })
+            }
           />
           <IconPemayaran
             title="Perawat Lansia"
             iconname="walk"
-            onPress={() => navigation.navigate('Pulsa')}
+            onPress={() =>
+              navigation.navigate('Kategori', {
+                kategori: 'perawat_lansia',
+                menu: 'Perawat Lansia',
+              })
+            }
           />
           <IconPemayaran
             title="Nanny"
             iconname="woman"
-            onPress={() => navigation.navigate('Pulsa')}
+            onPress={() =>
+              navigation.navigate('Kategori', {
+                kategori: 'nanny',
+                menu: 'Nanny',
+              })
+            }
           />
 
           <IconPemayaran
             title="Perawat Anak Khusus"
             iconname="woman"
-            onPress={() => navigation.navigate('Pulsa')}
+            onPress={() =>
+              navigation.navigate('Kategori', {
+                kategori: 'perawat_anak',
+                menu: 'Perawat Anak Khusus',
+              })
+            }
           />
         </View>
       </ScrollView>

@@ -18,8 +18,7 @@ export default function MyCarouser() {
     {
       id: 0,
       desc: 'Jasa kebutuhan asisten rumah tangga',
-      image:
-        'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
+      image: 'https://zavalabs.com/api/assets/pembantuku-banner.jpg',
     },
     {
       id: 1,

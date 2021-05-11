@@ -39,6 +39,11 @@ import {
   Pelamar,
   PelamarDetail,
   PelamarSelesai,
+  Search,
+  Pembantu,
+  Kategori,
+  PembantuSelsai,
+  ListData,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
@@ -51,6 +56,7 @@ const MainApp = () => {
   return (
     <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
       <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Transaksi" component={ListData} />
       <Tab.Screen name="Account" component={Account} />
     </Tab.Navigator>
   );
@@ -84,6 +90,14 @@ export default function Router() {
       <Stack.Screen
         name="PelamarDetail"
         component={PelamarDetail}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="ListData"
+        component={ListData}
         options={{
           headerShown: false,
         }}
@@ -169,10 +183,53 @@ export default function Router() {
       />
 
       <Stack.Screen
-        name="Berita"
-        component={Berita}
+        name="Search"
+        component={Search}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="PembantuSelesai"
+        component={PembantuSelsai}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="Kategori"
+        component={Kategori}
         options={({route, navigation}) => ({
-          title: 'ARTIKEL BERITA',
+          title: 'Detail Pembantu',
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0, // remove shadow on Android
+          },
+          cardStyleInterpolator: ({current, layouts}) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        })}
+      />
+
+      <Stack.Screen
+        name="Pembantu"
+        component={Pembantu}
+        options={({route, navigation}) => ({
+          title: 'Detail Pembantu',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,

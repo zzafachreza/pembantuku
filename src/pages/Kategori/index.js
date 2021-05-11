@@ -1,34 +1,35 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
   View,
-  ImageBackground,
-  TouchableOpacity,
-  Image,
+  SafeAreaView,
+  TextInput,
   FlatList,
+  TouchableOpacity,
+  ActivityIndicator,
+  StatusBar,
+  Image,
+  ScrollView,
 } from 'react-native';
+import {MyHeader} from '../../components';
 import {Icon} from 'react-native-elements';
-import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import {colors} from '../../utils/colors';
+import LottieView from 'lottie-react-native';
 import {fonts} from '../../utils/fonts';
 import 'intl';
 import 'intl/locale-data/jsonp/en';
 
-export default function MyTerbaik() {
-  useEffect(() => {
-    // axios
-    //   .get(
-    //     'https://ayokulakan.com/api/barang?limit=11&includes=creator,attachments&disc_barang!=null',
-    //   )
-    //   .then(res => {
-    //     console.log(res.data.data);
-    //     // setData(res.data.data);
-    //   });
-  }, []);
+export default function Kategori({navigation, route}) {
+  const kategori = route.params.kategori;
+  const menu = route.params.menu;
 
-  const navigation = useNavigation();
+  navigation.setOptions({title: menu});
+
+  const [key, setKey] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const [data, setData] = useState([
     {
       id: 0,
@@ -137,39 +138,34 @@ export default function MyTerbaik() {
   };
 
   return (
-    <View>
-      <View
+    <>
+      <ScrollView
         style={{
           flex: 1,
-          padding: 10,
           backgroundColor: '#FFF',
         }}>
         <View
           style={{
-            flexDirection: 'row',
-            // justifyContent: 'center',
-            alignItems: 'center',
-            paddingVertical: 5,
+            flex: 1,
+            padding: 10,
           }}>
-          <Icon type="ionicon" name="grid" color={colors.primary} size={16} />
-          <Text
-            style={{
-              fontFamily: 'Montserrat-SemiBold',
-              color: colors.primary,
-              left: 10,
-              fontSize: 16,
-            }}>
-            DAFTAR PEMBANTU TERBAIK
-          </Text>
+          <FlatList
+            numColumns={2}
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+          />
         </View>
-        <FlatList
-          numColumns={2}
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
+      </ScrollView>
+      {loading && (
+        <LottieView
+          source={require('../../assets/animation.json')}
+          autoPlay
+          loop
+          style={{flex: 1, backgroundColor: colors.primary}}
         />
-      </View>
-    </View>
+      )}
+    </>
   );
 }
 

@@ -14,7 +14,13 @@ import Edit from './Edit';
 import Pelamar from './Pelamar';
 import PelamarDetail from './PelamarDetail';
 import PelamarSelesai from './PelamarSelesai';
-
+import Search from './Search';
+import Booking from './Booking';
+import BookingDetail from './BookingDetail';
+import Pembantu from './Pembantu';
+import Kategori from './Kategori';
+import PembantuSelsai from './PembantuSelesai';
+import ListData from './ListData';
 export {
   Splash,
   GetStarted,
@@ -32,4 +38,11 @@ export {
   Pelamar,
   PelamarDetail,
   PelamarSelesai,
+  Search,
+  Pembantu,
+  Booking,
+  BookingDetail,
+  Kategori,
+  PembantuSelsai,
+  ListData,
 };
