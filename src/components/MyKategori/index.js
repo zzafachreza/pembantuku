@@ -4,7 +4,7 @@ import {Icon} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
 import {colors} from '../../utils/colors';
 
-const IconPemayaran = ({img, title, onPress, iconname}) => {
+const IconCategory = ({img, title, onPress, iconname}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -55,6 +55,65 @@ const IconPemayaran = ({img, title, onPress, iconname}) => {
 
 export default function MyKategori() {
   const navigation = useNavigation();
+
+  const dataKategori = [
+    {
+      label: 'Pembantu',
+      value: 'Pembantu',
+      icon: 'woman',
+    },
+    {
+      label: 'Baby Sister',
+      value: 'Baby Sister',
+      icon: 'woman',
+    },
+    {
+      label: 'Tukang Masak',
+      value: 'Tukang Masak',
+      icon: 'restaurant',
+    },
+    {
+      label: 'Sopir/Driver',
+      value: 'Sopir/Driver',
+      icon: 'car',
+    },
+    {
+      label: 'Tukang Kebun',
+      value: 'Tukang Kebun',
+      icon: 'color-fill',
+    },
+    {
+      label: 'Tukang Pijat',
+      value: 'Tukang Pijat',
+      icon: 'color-fill',
+    },
+    {
+      label: 'Office Boy',
+      value: 'Office Boy',
+      icon: 'home',
+    },
+    {
+      label: 'Perawat Lansia',
+      value: 'Perawat Lansia',
+      icon: 'color-fill',
+    },
+    {
+      label: 'Cleaning Service',
+      value: 'Cleaning Service',
+      icon: 'color-fill',
+    },
+    {
+      label: 'Pet Care',
+      value: 'Pet Care',
+      icon: 'paw',
+    },
+    {
+      label: 'Penjaga Toko',
+      value: 'Penjaga Toko',
+      icon: 'home',
+    },
+  ];
+
   return (
     <View
       style={{
@@ -88,108 +147,20 @@ export default function MyKategori() {
             flexDirection: 'row',
             // backgroundColor: '#16A858',
           }}>
-          <IconPemayaran
-            title="Driver"
-            iconname="car"
-            onPress={() =>
-              navigation.navigate('Kategori', {
-                kategori: 'driver',
-                menu: 'Driver',
-              })
-            }
-          />
-          <IconPemayaran
-            title="Tukang Kebun"
-            iconname="color-fill"
-            onPress={() =>
-              navigation.navigate('Kategori', {
-                kategori: 'tukang_kebun',
-                menu: 'Tukang Kebun',
-              })
-            }
-          />
-          <IconPemayaran
-            title="Home Care"
-            iconname="home"
-            onPress={() =>
-              navigation.navigate('Kategori', {
-                kategori: 'home_care',
-                menu: 'Home Care',
-              })
-            }
-          />
-          <IconPemayaran
-            title="Pet Caretaker"
-            iconname="paw"
-            onPress={() =>
-              navigation.navigate('Kategori', {
-                kategori: 'pet_caretaker',
-                menu: 'Pet Caretaker',
-              })
-            }
-          />
-          <IconPemayaran
-            title="SPG"
-            iconname="woman"
-            onPress={() =>
-              navigation.navigate('Kategori', {
-                kategori: 'spg',
-                menu: 'SPG',
-              })
-            }
-          />
-
-          <IconPemayaran
-            title="Asisten Rumah"
-            iconname="woman"
-            onPress={() =>
-              navigation.navigate('Kategori', {
-                kategori: 'asisten_rumah',
-                menu: 'Asisten Rumah',
-              })
-            }
-          />
-          <IconPemayaran
-            title="Juru Masak"
-            iconname="restaurant"
-            onPress={() =>
-              navigation.navigate('Kategori', {
-                kategori: 'juru_masak',
-                menu: 'Juru Masak',
-              })
-            }
-          />
-          <IconPemayaran
-            title="Perawat Lansia"
-            iconname="walk"
-            onPress={() =>
-              navigation.navigate('Kategori', {
-                kategori: 'perawat_lansia',
-                menu: 'Perawat Lansia',
-              })
-            }
-          />
-          <IconPemayaran
-            title="Nanny"
-            iconname="woman"
-            onPress={() =>
-              navigation.navigate('Kategori', {
-                kategori: 'nanny',
-                menu: 'Nanny',
-              })
-            }
-          />
-
-          <IconPemayaran
-            title="Perawat Anak Khusus"
-            iconname="woman"
-            onPress={() =>
-              navigation.navigate('Kategori', {
-                kategori: 'perawat_anak',
-                menu: 'Perawat Anak Khusus',
-              })
-            }
-          />
+          {dataKategori.map(item => {
+            return (
+              <IconCategory
+                title={item.value}
+                iconname={item.icon}
+                onPress={() =>
+                  navigation.navigate('Kategori', {
+                    kategori: item.value,
+                    menu: item.value,
+                  })
+                }
+              />
+            );
+          })}
         </View>
       </ScrollView>
     </View>

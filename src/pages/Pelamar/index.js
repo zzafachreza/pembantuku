@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import {colors} from '../../utils/colors';
 import {fonts} from '../../utils/fonts';
-import {MyInput, MyGap, MyButton} from '../../components';
+import {MyInput, MyGap, MyButton, MyPicker} from '../../components';
 import axios from 'axios';
 import {showMessage} from 'react-native-flash-message';
 import LottieView from 'lottie-react-native';
@@ -120,11 +120,60 @@ export default function Pelamar({navigation}) {
     naik_motor: null,
     bisa_masak: null,
     bisa_asuh: null,
-    referal: null,
+    sebagai_apa: 'Pembantu',
+    hp_dapat_dihubungi: null,
+    referral: null,
     gaji: null,
     foto1: foto1,
     foto2: foto2,
   });
+
+  const dataKategori = [
+    {
+      label: 'Pembantu',
+      value: 'Pembantu',
+    },
+    {
+      label: 'Baby Sister',
+      value: 'Baby Sister',
+    },
+    {
+      label: 'Tukang Masak',
+      value: 'Tukang Masak',
+    },
+    {
+      label: 'Sopir/Driver',
+      value: 'Sopir/Driver',
+    },
+    {
+      label: 'Tukang Kebun',
+      value: 'Tukang Kebun',
+    },
+    {
+      label: 'Tukang Pijat',
+      value: 'Tukang Pijat',
+    },
+    {
+      label: 'Office Boy',
+      value: 'Office Boy',
+    },
+    {
+      label: 'Perawat Lansia',
+      value: 'Perawat Lansia',
+    },
+    {
+      label: 'Cleaning Service',
+      value: 'Cleaning Service',
+    },
+    {
+      label: 'Pet Care',
+      value: 'Pet Care',
+    },
+    {
+      label: 'Penjaga Toko',
+      value: 'Penjaga Toko',
+    },
+  ];
 
   const simpan = () => {
     // setLoading(true);
@@ -221,11 +270,6 @@ export default function Pelamar({navigation}) {
   return (
     <ImageBackground style={styles.page}>
       <ScrollView style={styles.page}>
-        {/* <Image
-        source={require('../../assets/logooren.png')}
-        style={styles.image}
-      /> */}
-
         <MyGap jarak={20} />
         <MyInput
           label="Nama Lengkap"
@@ -274,7 +318,6 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <MyGap jarak={10} />
         <MyInput
           label="Tanggal Lahir (contoh : 20/11/1987)"
@@ -323,7 +366,6 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <MyGap jarak={10} />
         <MyInput
           label="Tempat Tinggal Saat ini"
@@ -336,7 +378,6 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <MyGap jarak={10} />
         <MyInput
           label="Profesi"
@@ -401,7 +442,6 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <MyGap jarak={10} />
         <MyInput
           label="Bersedia bekerja dimana ? (contoh : Jabodetabek)"
@@ -438,7 +478,6 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <MyGap jarak={10} />
         <MyInput
           label="Pendidikan Terkahir"
@@ -451,7 +490,6 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <MyGap jarak={10} />
         <MyInput
           label="Pengalaman Kerja"
@@ -464,7 +502,6 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <MyGap jarak={10} />
         <MyInput
           label="Status Pernikahan"
@@ -477,7 +514,6 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <MyGap jarak={10} />
         <MyInput
           label="Punya Anak ? (YA/TIDAK)"
@@ -490,7 +526,6 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <MyGap jarak={10} />
         <MyInput
           label="Agama"
@@ -503,7 +538,6 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <MyGap jarak={10} />
         <MyInput
           label="Suku Asal"
@@ -516,7 +550,6 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <MyGap jarak={10} />
         <MyInput
           label="Bahasa Inggris"
@@ -529,7 +562,6 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <MyGap jarak={10} />
         <MyInput
           label="Bisa Naik Motor ? (YA/TIDAK)"
@@ -542,7 +574,6 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <MyGap jarak={10} />
         <MyInput
           label="Bisa Masak ? (YA/TIDAK)"
@@ -555,7 +586,6 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <MyGap jarak={10} />
         <MyInput
           label="Bisa Asuh Bayi/Balita/Anak"
@@ -569,14 +599,39 @@ export default function Pelamar({navigation}) {
           }
         />
         <MyGap jarak={10} />
+        <MyPicker
+          value={data.sebagai_apa}
+          data={dataKategori}
+          label="Melamar sebagai apa ?"
+          iconname="person"
+          onValueChange={val => {
+            setData({
+              ...data,
+              sebagai_apa: val,
+            });
+          }}
+        />
+        <MyGap jarak={10} />
         <MyInput
-          label="Referal"
-          iconname="analytics"
-          value={data.referal}
+          label="Nomor HP keluarga yg dapat dihubungi"
+          iconname="call"
+          value={data.hp_dapat_dihubungi}
           onChangeText={value =>
             setData({
               ...data,
-              referal: value,
+              hp_dapat_dihubungi: value,
+            })
+          }
+        />
+        <MyGap jarak={10} />
+        <MyInput
+          label="Referral"
+          iconname="analytics"
+          value={data.referral}
+          onChangeText={value =>
+            setData({
+              ...data,
+              referral: value,
             })
           }
         />
@@ -593,21 +648,18 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-
         <UploadFoto
           onPress1={() => getCamera(1)}
           onPress2={() => getGallery(1)}
           label="Upload KTP"
           foto={foto1}
         />
-
         <UploadFoto
           onPress1={() => getCamera(2)}
           onPress2={() => getGallery(2)}
           label="Upload Pas Foto"
           foto={foto2}
         />
-
         <MyGap jarak={40} />
         <MyButton
           warna={colors.secondary}
