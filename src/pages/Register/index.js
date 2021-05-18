@@ -28,32 +28,34 @@ export default function Register({navigation}) {
   const simpan = () => {
     setLoading(true);
     console.log(data);
-    axios.post('https://zavalabs.com/api/register.php', data).then(res => {
-      console.log(res);
-      let err = res.data.split('#');
+    axios
+      .post('https://zavalabs.com/pembantuku/api/register.php', data)
+      .then(res => {
+        console.log(res);
+        let err = res.data.split('#');
 
-      // console.log(err[0]);
-      if (err[0] == 50) {
-        setTimeout(() => {
-          setLoading(false);
+        // console.log(err[0]);
+        if (err[0] == 50) {
+          setTimeout(() => {
+            setLoading(false);
+            showMessage({
+              message: err[1],
+              type: 'danger',
+            });
+          }, 1200);
+        } else {
+          setTimeout(() => {
+            setLoading(false);
+            navigation.replace('Success', {
+              messege: res.data,
+            });
+          }, 1200);
           showMessage({
-            message: err[1],
-            type: 'danger',
+            message: res.data,
+            type: 'success',
           });
-        }, 1200);
-      } else {
-        setTimeout(() => {
-          setLoading(false);
-          navigation.replace('Success', {
-            messege: res.data,
-          });
-        }, 1200);
-        showMessage({
-          message: res.data,
-          type: 'success',
-        });
-      }
-    });
+        }
+      });
   };
   return (
     <ImageBackground style={styles.page}>

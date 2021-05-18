@@ -11,11 +11,14 @@ import {fonts} from '../../utils/fonts';
 import LottieView from 'lottie-react-native';
 import {MyButton} from '../../components';
 import {colors} from '../../utils/colors';
+import axios from 'axios';
 
 export default function PelamarSelesai({navigation, route}) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const txt = new Animated.Value(-windowWidth);
+
+  console.log('kirim', route.params);
 
   Animated.timing(txt, {
     toValue: 10,

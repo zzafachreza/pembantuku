@@ -31,19 +31,21 @@ export default function Login({navigation}) {
     setLoading(true);
     console.log(data);
     setTimeout(() => {
-      axios.post('https://zavalabs.com/api/login.php', data).then(res => {
-        console.log(res.data);
-        setLoading(false);
-        if (res.data.kode == 50) {
-          showMessage({
-            type: 'danger',
-            message: res.data.msg,
-          });
-        } else {
-          storeData('user', res.data);
-          navigation.replace('MainApp');
-        }
-      });
+      axios
+        .post('https://zavalabs.com/pembantuku/api/login.php', data)
+        .then(res => {
+          console.log(res.data);
+          setLoading(false);
+          if (res.data.kode == 50) {
+            showMessage({
+              type: 'danger',
+              message: res.data.msg,
+            });
+          } else {
+            storeData('user', res.data);
+            navigation.replace('MainApp');
+          }
+        });
     }, 1200);
   };
   return (

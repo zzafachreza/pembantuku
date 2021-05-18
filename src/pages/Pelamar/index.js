@@ -101,7 +101,7 @@ export default function Pelamar({navigation}) {
     nomor_ktp: null,
     nomor_kk: null,
     alamat: null,
-    alamaat_sekarang: null,
+    alamat_sekarang: null,
     profesi: null,
     telepon: null,
     tinggi_badan: null,

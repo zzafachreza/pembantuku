@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,10 +10,13 @@ import {
 import {fonts} from '../../utils/fonts';
 import {MyButton} from '../../components';
 import {colors} from '../../utils/colors';
+import axios from 'axios';
+import LottieView from 'lottie-react-native';
 
 export default function PelamarDetail({navigation, route}) {
   const item = route.params;
   console.log('dataPelamar', item);
+  const [loading, setLoading] = useState(false);
 
   const MyListData = ({label, value}) => {
     return (
@@ -126,7 +129,9 @@ export default function PelamarDetail({navigation, route}) {
           label="Bisa Asuk Bayi/Balita/Anak-anak"
           value={item.bisa_asuh}
         />
-        <MyListData label="Referal" value={item.referal} />
+        <MyListData label="Melamar Sebagai Apa ? " value={item.sebagai_apa} />
+        <MyListData label="Nomor Keluarga" value={item.hp_dapat_dihubungi} />
+        <MyListData label="Referral" value={item.referral} />
         <MyListData label="Gaji Yang Diharapkan" value={item.gaji} />
         <View style={{marginTop: 30}} />
       </ScrollView>
@@ -135,9 +140,25 @@ export default function PelamarDetail({navigation, route}) {
         title="KIRIM LAMARAN"
         warna={colors.primary}
         onPress={() => {
-          navigation.navigate('PelamarSelesai', item);
+          setLoading(true);
+          axios
+            .post('https://zavalabs.com/pembantuku/api/pelamar_add.php', item)
+            .then(res => {
+              console.log(res.data);
+              setTimeout(() => {
+                navigation.navigate('PelamarSelesai', item);
+              }, 1000);
+            });
         }}
       />
+      {loading && (
+        <LottieView
+          source={require('../../assets/animation.json')}
+          autoPlay
+          loop
+          style={{backgroundColor: colors.primary}}
+        />
+      )}
     </SafeAreaView>
   );
 }
