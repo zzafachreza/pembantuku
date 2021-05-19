@@ -57,7 +57,15 @@ export default function GetStarted({navigation}) {
             height: 200,
           }}
         />
-        <Text style={styles.title}>PEMBANTUKU</Text>
+        <Text
+          style={{
+            marginTop: 50,
+            fontFamily: fonts.secondary[800],
+            fontSize: windowWidth / 10,
+            color: colors.primary,
+          }}>
+          PEMBANTUKU
+        </Text>
       </View>
 
       <MyButton

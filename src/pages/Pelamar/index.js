@@ -677,6 +677,7 @@ export default function Pelamar({navigation}) {
           }}>
           Silahkan melakukan pengisian formulir terlebih dahulu
         </Text>
+        <MyGap jarak={10} />
       </ScrollView>
       {loading && (
         <LottieView

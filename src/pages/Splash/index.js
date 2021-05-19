@@ -40,8 +40,22 @@ export default function Splash({navigation}) {
   return (
     <SafeAreaView style={styles.page}>
       <Image style={styles.image} source={require('../../assets/logo.png')} />
-      <Text style={styles.title}>PEMBANTUKU</Text>
-      <Text style={styles.subtitle}>By PT Feny Jaya Mandiri (Outsourcing)</Text>
+      <Text
+        style={{
+          fontFamily: fonts.secondary[800],
+          fontSize: windowWidth / 10,
+          color: colors.white,
+        }}>
+        PEMBANTUKU
+      </Text>
+      <Text
+        style={{
+          fontFamily: fonts.secondary[600],
+          fontSize: windowWidth / 22,
+          color: colors.white,
+        }}>
+        By PT Feny Jaya Mandiri (Outsourcing)
+      </Text>
     </SafeAreaView>
   );
 }
@@ -57,15 +71,5 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     width: 200,
     height: 200,
-  },
-  title: {
-    fontFamily: fonts.secondary[800],
-    fontSize: 50,
-    color: colors.white,
-  },
-  subtitle: {
-    fontFamily: fonts.secondary[600],
-    fontSize: 18,
-    color: colors.white,
   },
 });
