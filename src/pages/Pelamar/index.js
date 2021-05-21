@@ -18,6 +18,7 @@ import axios from 'axios';
 import {showMessage} from 'react-native-flash-message';
 import LottieView from 'lottie-react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function Pelamar({navigation}) {
   const [loading, setLoading] = useState(false);
@@ -98,6 +99,7 @@ export default function Pelamar({navigation}) {
     email: null,
     tempat_lahir: null,
     tanggal_lahir: null,
+    tanggal_lahir_sql: null,
     nomor_ktp: null,
     nomor_kk: null,
     alamat: null,
@@ -174,6 +176,47 @@ export default function Pelamar({navigation}) {
       value: 'Penjaga Toko',
     },
   ];
+
+  // datepicker
+
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+
+    // alert(currentDate);
+
+    const Today = new Date(currentDate);
+    const dd = String(Today.getDate()).padStart(2, '0');
+    const mm = String(Today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = Today.getFullYear();
+    const jam = Today.getHours();
+    const menit = Today.getMinutes();
+    const detik = Today.getUTCSeconds();
+    const today = `${dd}/${mm}/${yyyy}`;
+    setData({
+      ...data,
+      tanggal_lahir: today,
+      tanggal_lahir_sql: `${yyyy}-${mm}-${dd}`,
+    });
+  };
+
+  const showMode = currentMode => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
+  const showTimepicker = () => {
+    showMode('time');
+  };
 
   const simpan = () => {
     // setLoading(true);
@@ -320,7 +363,10 @@ export default function Pelamar({navigation}) {
         />
         <MyGap jarak={10} />
         <MyInput
-          label="Tanggal Lahir (contoh : 20/11/1987)"
+          onFocus={() => {
+            showDatepicker();
+          }}
+          label="Tanggal Lahir"
           iconname="calendar"
           value={data.tanggal_lahir}
           onChangeText={value =>
@@ -330,6 +376,17 @@ export default function Pelamar({navigation}) {
             })
           }
         />
+        {show && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            mode={mode}
+            format="YYYY-MM-DD"
+            is24Hour={true}
+            display="default"
+            onChange={onChange}
+          />
+        )}
         <MyGap jarak={10} />
         <MyInput
           label="Nomor KTP"

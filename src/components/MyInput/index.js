@@ -6,6 +6,7 @@ import {fonts} from '../../utils/fonts';
 import {TextInput} from 'react-native-gesture-handler';
 
 export default function MyInput({
+  onFocus,
   label,
   iconname,
   onChangeText,
@@ -52,6 +53,7 @@ export default function MyInput({
         </Text>
       )}
       <TextInput
+        onFocus={onFocus}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
