@@ -64,6 +64,17 @@ export default function Register({navigation}) {
         source={require('../../assets/logooren.png')}
         style={styles.image}
       /> */}
+        <Text
+          style={{
+            marginTop: 20,
+            fontFamily: fonts.secondary[400],
+            fontSize: 16,
+            color: colors.black,
+            // maxWidth: 230,
+          }}>
+          Silahkan melakukan pendaftaran terlebih dahulu, sebelum login ke
+          Aplikasi Pembantuku
+        </Text>
 
         <MyGap jarak={20} />
         <MyInput
@@ -129,22 +140,11 @@ export default function Register({navigation}) {
         />
         <MyGap jarak={40} />
         <MyButton
-          warna={colors.secondary}
-          title="MASUK"
+          warna={colors.primary}
+          title="REGISTER"
           Icons="log-in"
           onPress={simpan}
         />
-        <Text
-          style={{
-            marginTop: 20,
-            fontFamily: fonts.secondary[400],
-            fontSize: 16,
-            color: colors.black,
-            // maxWidth: 230,
-          }}>
-          Silahkan melakukan pendaftaran terlebih dahulu, sebelum masuk ke
-          Aplikasi Pembantuku
-        </Text>
       </ScrollView>
       {loading && (
         <LottieView

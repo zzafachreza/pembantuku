@@ -65,7 +65,7 @@ export default function MyKategori() {
     {
       label: 'Baby Sister',
       value: 'Baby Sister',
-      icon: 'woman',
+      icon: 'people',
     },
     {
       label: 'Tukang Masak',
@@ -80,27 +80,27 @@ export default function MyKategori() {
     {
       label: 'Tukang Kebun',
       value: 'Tukang Kebun',
-      icon: 'color-fill',
+      icon: 'rose',
     },
     {
       label: 'Tukang Pijat',
       value: 'Tukang Pijat',
-      icon: 'color-fill',
+      icon: 'hand-right',
     },
     {
       label: 'Office Boy',
       value: 'Office Boy',
-      icon: 'home',
+      icon: 'trash',
     },
     {
       label: 'Perawat Lansia',
       value: 'Perawat Lansia',
-      icon: 'color-fill',
+      icon: 'walk',
     },
     {
       label: 'Cleaning Service',
       value: 'Cleaning Service',
-      icon: 'color-fill',
+      icon: 'water',
     },
     {
       label: 'Pet Care',
@@ -110,7 +110,7 @@ export default function MyKategori() {
     {
       label: 'Penjaga Toko',
       value: 'Penjaga Toko',
-      icon: 'home',
+      icon: 'body',
     },
   ];
 
@@ -121,6 +121,7 @@ export default function MyKategori() {
         padding: 10,
         backgroundColor: colors.primary,
         // backgroundColor: '#FFF',
+        paddingBottom: 20,
       }}>
       <View
         style={{

@@ -62,7 +62,7 @@ export default function GetStarted({navigation}) {
             marginTop: 50,
             fontFamily: fonts.secondary[800],
             fontSize: windowWidth / 10,
-            color: colors.primary,
+            color: 'red',
           }}>
           PEMBANTUKU
         </Text>
@@ -86,7 +86,9 @@ export default function GetStarted({navigation}) {
       <MyButton
         title="AJUKAN LAMARAN"
         Icons="send"
-        warna={colors.tertiary}
+        fontWeight="Bold"
+        colorText={colors.white}
+        warna="#ff7979"
         onPress={() => navigation.navigate('Pelamar')}
       />
       <Animated.View style={{height: top}} />
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
   page: {
     // backgroundColor: 'white',
     flex: 1,
-    padding: 10,
+    padding: 35,
   },
   title: {
     marginTop: 50,

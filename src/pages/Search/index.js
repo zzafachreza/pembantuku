@@ -26,44 +26,7 @@ export default function Search({navigation, route}) {
   const [cari, setCari] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const [data, setData] = useState([
-    {
-      id: 0,
-      nama_lengkap: 'Febriana elizabeth mare',
-      lokasi: 'Jakarta',
-      harga: 2000000,
-      kategori: 'Home Care',
-      image:
-        'https://pembantuku.id/sites/default/files/styles/mediaum_large_pportrait/public/IMG-20210501-WA0015.jpg?itok=X7BGWX6P',
-    },
-    {
-      id: 1,
-      nama_lengkap: 'Ratinah bt darta',
-      lokasi: 'Jakarta',
-      harga: 3200000,
-      kategori: 'Home Care',
-      image:
-        'https://pembantuku.id/sites/default/files/IMG_20210501_080502.jpg',
-    },
-    {
-      id: 2,
-      nama_lengkap: 'Komalasari',
-      lokasi: 'Jakarta',
-      harga: 1800000,
-      kategori: 'Home Care',
-      image:
-        'https://pembantuku.id/sites/default/files/styles/mediaum_large_pportrait/public/IMG-20210411-WA0063.jpg?itok=XbREtZJh',
-    },
-    {
-      id: 3,
-      nama_lengkap: 'Seiyva nazula bibah',
-      lokasi: 'Jakarta',
-      harga: 2600000,
-      kategori: 'Home Care',
-      image:
-        'https://pembantuku.id/sites/default/files/styles/mediaum_large_pportrait/public/IMG_20210427_185110_0.jpg?itok=8cNqoDMo',
-    },
-  ]);
+  const [data, setData] = useState([]);
 
   const renderItem = ({item}) => {
     return (
@@ -71,7 +34,7 @@ export default function Search({navigation, route}) {
         style={styles.card}
         onPress={() => navigation.navigate('Pembantu', item)}
         activeOpacity={1.0}>
-        <Image style={styles.image} source={{uri: item.image}} />
+        <Image style={styles.image} source={{uri: item.foto2}} />
         <View
           style={{
             flexDirection: 'row',
@@ -86,7 +49,7 @@ export default function Search({navigation, route}) {
               paddingHorizontal: 20,
               color: colors.white,
             }}>
-            {item.kategori}
+            {item.sebagai_apa}
           </Text>
         </View>
         <View style={styles.detailsContainer}>
@@ -96,7 +59,7 @@ export default function Search({navigation, route}) {
             }}>
             <Text style={styles.title}>
               {' '}
-              Rp. {new Intl.NumberFormat().format(item.harga)}
+              Rp. {new Intl.NumberFormat().format(item.gaji)}
             </Text>
           </View>
           <View
@@ -125,7 +88,7 @@ export default function Search({navigation, route}) {
                 left: 10,
                 color: colors.black,
               }}>
-              {item.lokasi}
+              {item.alamat}
             </Text>
           </View>
         </View>
@@ -137,6 +100,15 @@ export default function Search({navigation, route}) {
     setLoading(true);
     setTimeout(() => {
       setCari(true);
+      axios
+        .post('https://zavalabs.com/pembantuku/api/pelamar_cari.php', {
+          cari: key,
+        })
+        .then(res => {
+          console.log(res.data);
+          setData(res.data);
+          // setData(res.data.data);
+        });
       setLoading(false);
     }, 500);
   };

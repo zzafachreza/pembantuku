@@ -75,15 +75,7 @@ export default function Home({navigation}) {
             backgroundColor: colors.primary,
             flexDirection: 'row',
           }}>
-          <View style={{flex: 1}}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: colors.white,
-                fontFamily: fonts.secondary[600],
-              }}>
-              PEMBANTUKU
-            </Text>
+          <View style={{flex: 1, paddingTop: 15}}>
             <Text
               style={{
                 fontSize: 20,
@@ -103,9 +95,12 @@ export default function Home({navigation}) {
           </View>
           <View
             style={{
-              flex: 1,
+              // flex: 1,
               justifyContent: 'center',
               alignItems: 'center',
+              backgroundColor: colors.white,
+              borderRadius: 50,
+              marginRight: 25,
             }}>
             <Image
               style={{width: 80, height: 80}}

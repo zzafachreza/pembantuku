@@ -72,17 +72,18 @@ export default function Login({navigation}) {
               color: colors.black,
               // maxWidth: 230,
             }}>
-            Silahkan login untuk masuk ke aplikasi
+            Silahkan login untuk masuk ke aplikasi{' '}
+            <Text
+              style={{
+                fontFamily: fonts.secondary[600],
+                fontSize: windowWidth / 20,
+                color: colors.black,
+                // maxWidth: 230,
+              }}>
+              Pembantuku
+            </Text>
           </Text>
-          <Text
-            style={{
-              fontFamily: fonts.secondary[600],
-              fontSize: windowWidth / 20,
-              color: colors.black,
-              // maxWidth: 230,
-            }}>
-            pembantuku
-          </Text>
+
           <MyGap jarak={20} />
           <MyInput
             label="Email"

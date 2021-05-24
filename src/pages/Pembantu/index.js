@@ -12,35 +12,11 @@ import {fonts} from '../../utils/fonts';
 import {MyButton} from '../../components';
 import 'intl';
 import 'intl/locale-data/jsonp/en';
+import {color} from 'react-native-reanimated';
 
 export default function Pembantu({navigation, route}) {
-  const item = {
-    image: 'https://pembantuku.id/sites/default/files/IMG_20210501_080502.jpg',
-    nama_lengkap: 'febriana elisabeth mare',
-    nama_panggilan: 'riani',
-    tempat_lahir: 'Bandung',
-    tanggal_lahir: '20/02/2003',
-    nomor_ktp: '5304236002030002',
-    nomor_kk: '',
-    profesi: '',
-    tinggi_badan: '150',
-    berat_badan: '45',
-    umur: '18',
-    mau_kerja_dimana: 'dimana saja',
-    takut_anjing: 'tidak',
-    kerja_diluar_negri: 'tidak',
-    pendidikan: 'sma',
-    pengalaman: 'art dana baby sister',
-    pernikahan: 'singel',
-    punya_anak: 'tidak',
-    agama: 'katolik',
-    suku: 'jawa',
-    inggris: 'tidak',
-    naik_motor: 'tidak',
-    bisa_masak: 'bisa',
-    bisa_asuh: 'bisa',
-    gaji: 2500000,
-  };
+  const item = route.params;
+  console.log('detail pembantu', item);
   navigation.setOptions({title: item.nama_lengkap});
 
   const MyListData = ({label, value}) => {
@@ -82,6 +58,7 @@ export default function Pembantu({navigation, route}) {
     <SafeAreaView
       style={{
         flex: 1,
+        backgroundColor: colors.primary,
       }}>
       <View
         style={{
@@ -95,7 +72,7 @@ export default function Pembantu({navigation, route}) {
             aspectRatio: 1,
           }}
           source={{
-            uri: item.image,
+            uri: item.foto2,
           }}
         />
       </View>
@@ -184,8 +161,9 @@ export default function Pembantu({navigation, route}) {
         <View style={{marginTop: 30}} />
       </ScrollView>
       <MyButton
+        fontWeight="bold"
         radius={0}
-        title="KIRIM PERMINTAAN"
+        title="BOOKING"
         warna={colors.primary}
         onPress={() => {
           navigation.navigate('PembantuSelesai', item);

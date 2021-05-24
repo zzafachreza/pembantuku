@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -25,49 +25,24 @@ export default function Kategori({navigation, route}) {
   const kategori = route.params.kategori;
   const menu = route.params.menu;
 
+  useEffect(() => {
+    axios
+      .post('https://zavalabs.com/pembantuku/api/pelamar_category.php', {
+        kategori: kategori,
+      })
+      .then(res => {
+        console.log(res.data);
+        setData(res.data);
+        // setData(res.data.data);
+      });
+  }, []);
+
   navigation.setOptions({title: menu});
 
   const [key, setKey] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const [data, setData] = useState([
-    {
-      id: 0,
-      nama_lengkap: 'Febriana elizabeth mare',
-      lokasi: 'Jakarta',
-      harga: 2000000,
-      kategori: 'Home Care',
-      image:
-        'https://pembantuku.id/sites/default/files/IMG_20210501_080502.jpg',
-    },
-    {
-      id: 1,
-      nama_lengkap: 'Ratinah bt darta',
-      lokasi: 'Jakarta',
-      harga: 3200000,
-      kategori: 'Home Care',
-      image:
-        'https://pembantuku.id/sites/default/files/styles/mediaum_large_pportrait/public/IMG_20210504_142254.jpg?itok=NXqMajpa',
-    },
-    {
-      id: 2,
-      nama_lengkap: 'Komalasari',
-      lokasi: 'Jakarta',
-      harga: 1800000,
-      kategori: 'Home Care',
-      image:
-        'https://pembantuku.id/sites/default/files/styles/mediaum_large_pportrait/public/IMG-20210411-WA0063.jpg?itok=XbREtZJh',
-    },
-    {
-      id: 3,
-      nama_lengkap: 'Seiyva nazula bibah',
-      lokasi: 'Jakarta',
-      harga: 2600000,
-      kategori: 'Home Care',
-      image:
-        'https://pembantuku.id/sites/default/files/styles/mediaum_large_pportrait/public/IMG_20210427_185110_0.jpg?itok=8cNqoDMo',
-    },
-  ]);
+  const [data, setData] = useState([]);
 
   const renderItem = ({item}) => {
     return (
@@ -75,7 +50,7 @@ export default function Kategori({navigation, route}) {
         style={styles.card}
         onPress={() => navigation.navigate('Pembantu', item)}
         activeOpacity={1.0}>
-        <Image style={styles.image} source={{uri: item.image}} />
+        <Image style={styles.image} source={{uri: item.foto2}} />
         <View
           style={{
             flexDirection: 'row',
@@ -90,7 +65,7 @@ export default function Kategori({navigation, route}) {
               paddingHorizontal: 20,
               color: colors.white,
             }}>
-            {item.kategori}
+            {item.sebagai_apa}
           </Text>
         </View>
         <View style={styles.detailsContainer}>
@@ -100,7 +75,7 @@ export default function Kategori({navigation, route}) {
             }}>
             <Text style={styles.title}>
               {' '}
-              Rp. {new Intl.NumberFormat().format(item.harga)}
+              Rp. {new Intl.NumberFormat().format(item.gaji)}
             </Text>
           </View>
           <View
@@ -129,7 +104,7 @@ export default function Kategori({navigation, route}) {
                 left: 10,
                 color: colors.black,
               }}>
-              {item.lokasi}
+              {item.alamat}
             </Text>
           </View>
         </View>

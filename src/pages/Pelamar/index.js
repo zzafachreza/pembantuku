@@ -313,6 +313,17 @@ export default function Pelamar({navigation}) {
   return (
     <ImageBackground style={styles.page}>
       <ScrollView style={styles.page}>
+        <Text
+          style={{
+            marginTop: 20,
+            fontFamily: fonts.secondary[400],
+            fontSize: 16,
+            color: colors.black,
+            // maxWidth: 230,
+          }}>
+          Silahkan melakukan pengisian formulir terlebih dahulu
+        </Text>
+
         <MyGap jarak={20} />
         <MyInput
           label="Nama Lengkap"
@@ -435,18 +446,7 @@ export default function Pelamar({navigation}) {
             })
           }
         />
-        <MyGap jarak={10} />
-        <MyInput
-          label="Profesi"
-          iconname="layers"
-          value={data.profesi}
-          onChangeText={value =>
-            setData({
-              ...data,
-              profesi: value,
-            })
-          }
-        />
+
         <MyGap jarak={10} />
         <MyInput
           label="Telepon"
@@ -670,6 +670,18 @@ export default function Pelamar({navigation}) {
         />
         <MyGap jarak={10} />
         <MyInput
+          label="Profesi/Keahlian"
+          iconname="layers"
+          value={data.profesi}
+          onChangeText={value =>
+            setData({
+              ...data,
+              profesi: value,
+            })
+          }
+        />
+        <MyGap jarak={10} />
+        <MyInput
           label="Nomor HP keluarga yg dapat dihubungi"
           iconname="call"
           value={data.hp_dapat_dihubungi}
@@ -724,17 +736,7 @@ export default function Pelamar({navigation}) {
           Icons="log-in"
           onPress={simpan}
         />
-        <Text
-          style={{
-            marginTop: 20,
-            fontFamily: fonts.secondary[400],
-            fontSize: 16,
-            color: colors.black,
-            // maxWidth: 230,
-          }}>
-          Silahkan melakukan pengisian formulir terlebih dahulu
-        </Text>
-        <MyGap jarak={10} />
+        <MyGap jarak={70} />
       </ScrollView>
       {loading && (
         <LottieView
@@ -772,6 +774,7 @@ const styles = StyleSheet.create({
   },
   subjudulUpload: {
     fontSize: 12,
+    color: colors.primary,
     fontFamily: fonts.secondary[600],
     marginVertical: 5,
   },

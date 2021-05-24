@@ -44,15 +44,15 @@ export default function Splash({navigation}) {
         style={{
           fontFamily: fonts.secondary[800],
           fontSize: windowWidth / 10,
-          color: colors.white,
+          color: 'red',
         }}>
         PEMBANTUKU
       </Text>
       <Text
         style={{
           fontFamily: fonts.secondary[600],
-          fontSize: windowWidth / 22,
-          color: colors.white,
+          fontSize: windowWidth / 27,
+          color: '#0a3e93',
         }}>
         By PT Feny Jaya Mandiri (Outsourcing)
       </Text>
@@ -62,7 +62,7 @@ export default function Splash({navigation}) {
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.white,
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
