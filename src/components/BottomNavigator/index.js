@@ -47,9 +47,11 @@ export default function BottomNavigator({state, descriptors, navigation}) {
         if (label === 'Home') {
           iconName = 'home';
         } else if (label === 'Account') {
-          iconName = 'user';
+          iconName = 'person';
         } else if (label === 'Transaksi') {
           iconName = 'list';
+        } else if (label === 'Notifikasi') {
+          iconName = 'notifications';
         }
 
         return (
@@ -95,13 +97,13 @@ export default function BottomNavigator({state, descriptors, navigation}) {
                 {iconName === 'barcode' ? (
                   <Icon
                     name={iconName}
-                    type="font-awesome"
+                    type="ionicon"
                     color={isFocused ? 'white' : 'white'}
                   />
                 ) : (
                   <Icon
                     name={iconName}
-                    type="font-awesome"
+                    type="ionicon"
                     color={isFocused ? colors.primary : '#919095'}
                   />
                 )}

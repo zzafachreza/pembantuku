@@ -23,6 +23,7 @@ import MyNews from '../../components/MyNews';
 import MyCarouser from '../../components/MyCarouser';
 import MyKategori from '../../components/MyKategori';
 import MyTerbaik from '../../components/MyTerbaik';
+import axios from 'axios';
 
 export default function Home({navigation}) {
   const images = [
@@ -39,11 +40,26 @@ export default function Home({navigation}) {
   ];
 
   const [user, setUser] = useState([]);
+  const [token, setToken] = useState('');
 
   useEffect(() => {
     getData('user').then(res => {
       console.log(res);
       setUser(res);
+      getData('token').then(res => {
+        console.log('data token,', res);
+        setToken(res.token);
+      });
+      console.log('update token', user.id + ',' + token);
+
+      axios
+        .post('https://zavalabs.com/pembantuku/api/update_token.php', {
+          id_member: user.id,
+          token: token,
+        })
+        .then(res => {
+          console.log(res);
+        });
     });
   }, []);
 

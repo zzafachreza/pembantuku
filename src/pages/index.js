@@ -21,6 +21,7 @@ import Pembantu from './Pembantu';
 import Kategori from './Kategori';
 import PembantuSelsai from './PembantuSelesai';
 import ListData from './ListData';
+import Notifikasi from './Notifikasi';
 export {
   Splash,
   GetStarted,
@@ -45,4 +46,5 @@ export {
   Kategori,
   PembantuSelsai,
   ListData,
+  Notifikasi,
 };

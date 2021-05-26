@@ -10,7 +10,7 @@ export default function MyButton({
   Icons,
   radius = 10,
   colorText = 'white',
-  fontWeight,
+  fontWeight = 'normal',
   iconColor = 'white',
 }) {
   return (
@@ -22,7 +22,7 @@ export default function MyButton({
           fontSize: 18,
           left: 5,
           fontFamily: fonts.primary[600],
-          fontWeight: fontWeight,
+          // fontWeight: fontWeight,
         }}>
         {title}
       </Text>

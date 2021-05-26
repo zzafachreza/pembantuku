@@ -5,10 +5,33 @@ import {colors} from '../../utils/colors';
 import {fonts} from '../../utils/fonts';
 import axios from 'axios';
 import {getData} from '../../utils/localStorage';
+import PushNotification from 'react-native-push-notification';
+import messaging from '@react-native-firebase/messaging';
 
 export default function ListData() {
   const [data, setData] = useState([]);
   const [user, setUser] = useState({});
+
+  messaging().onMessage(async remoteMessage => {
+    // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    const json = JSON.stringify(remoteMessage);
+    const obj = JSON.parse(json);
+    // alert(obj.notification);
+    console.log('list transaksi', obj.notification);
+    getData('user').then(res => {
+      setUser(res);
+      console.log(res);
+
+      axios
+        .post('https://zavalabs.com/pembantuku/api/transaksi.php', {
+          id_member: res.id,
+        })
+        .then(res => {
+          console.log(res.data);
+          setData(res.data);
+        });
+    });
+  });
 
   useEffect(() => {
     getData('user').then(res => {
