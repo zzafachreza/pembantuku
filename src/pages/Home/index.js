@@ -50,18 +50,17 @@ export default function Home({navigation}) {
         console.log('data token,', res);
         setToken(res.token);
       });
-      console.log('update token', user.id + ',' + token);
-
-      axios
-        .post('https://zavalabs.com/pembantuku/api/update_token.php', {
-          id_member: user.id,
-          token: token,
-        })
-        .then(res => {
-          console.log(res);
-        });
     });
   }, []);
+
+  axios
+    .post('https://zavalabs.com/pembantuku/api/update_token.php', {
+      id_member: user.id,
+      token: token,
+    })
+    .then(res => {
+      console.log('update token', res);
+    });
 
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;

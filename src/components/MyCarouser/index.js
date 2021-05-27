@@ -5,66 +5,62 @@ import {
   View,
   Dimensions,
   ImageBackground,
+  TouchableNativeFeedback,
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {colors} from '../../utils/colors';
+import axios from 'axios';
+import {useNavigation} from '@react-navigation/native';
 
 export default function MyCarouser() {
   const [activeSlide, setActiveSlide] = useState(0);
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
+  const navigation = useNavigation();
 
-  const [data, setData] = useState([
-    {
-      id: 0,
-      desc: 'Jasa kebutuhan asisten rumah tangga',
-      image: 'https://zavalabs.com/api/assets/pembantuku-banner.jpg',
-    },
-    {
-      id: 1,
-      desc: 'Jasa kebutuhan asisten rumah tangga',
-      image:
-        'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-    },
+  useEffect(() => {
+    axios.get('https://zavalabs.com/pembantuku/api/slider.php').then(res => {
+      setData(res.data);
+    });
+  }, []);
 
-    {
-      id: 2,
-      desc: 'Jasa kebutuhan asisten rumah tangga',
-      image:
-        'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-    },
-  ]);
+  const [data, setData] = useState([]);
 
   const _renderItem = ({item, index}) => {
     return (
-      <ImageBackground
-        key={item.id}
-        source={{uri: item.image}}
-        style={{
-          height: Math.round((windowWidth * 9) / 16),
+      <TouchableNativeFeedback
+        onPress={() => {
+          navigation.navigate('Berita', item);
         }}>
-        <View
+        <ImageBackground
+          key={item.id}
+          source={{uri: item.image}}
           style={{
-            backgroundColor: colors.secondary,
-            position: 'absolute',
-            // maxWidth: 200,
-            bottom: 0,
-            right: 0,
-            borderTopLeftRadius: 20,
-            // borderBottomRightRadius: 20,
-            opacity: 0.9,
-            padding: 10,
+            height: Math.round((windowWidth * 9) / 16),
           }}>
-          <Text
+          <View
             style={{
-              fontSize: 14,
-              fontFamily: 'Courgette-Regular',
-              color: '#FFF',
+              backgroundColor: colors.secondary,
+              position: 'absolute',
+              // maxWidth: 200,
+              bottom: 0,
+              right: 0,
+              borderTopLeftRadius: 20,
+              // borderBottomRightRadius: 20,
+              opacity: 0.9,
+              padding: 10,
             }}>
-            {item.desc}
-          </Text>
-        </View>
-      </ImageBackground>
+            <Text
+              style={{
+                fontSize: 14,
+                fontFamily: 'Courgette-Regular',
+                color: '#FFF',
+              }}>
+              {item.judul}
+            </Text>
+          </View>
+        </ImageBackground>
+      </TouchableNativeFeedback>
     );
   };
 

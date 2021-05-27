@@ -16,21 +16,7 @@ import {
   Home,
   Account,
   Success,
-  Menu1,
-  Menu2,
-  Menu3,
-  Content,
-  Ekraf,
-  Perjanjian,
-  PerjanjianDetail,
-  Kawasan,
   Berita,
-  Usaha,
-  Dokumentasi,
-  Chse,
-  Jenis,
-  Resume,
-  Kegiatan,
   Tambah,
   List,
   Success2,
@@ -120,6 +106,15 @@ export default function Router() {
           headerShown: false,
         }}
       />
+
+      <Stack.Screen
+        name="Berita"
+        component={Berita}
+        options={{
+          headerShown: false,
+        }}
+      />
+
       <Stack.Screen
         name="Success2"
         component={Success2}
