@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -14,17 +14,25 @@ import {fonts} from '../../utils/fonts';
 import {MyInput, MyGap, MyButton} from '../../components';
 import LottieView from 'lottie-react-native';
 import axios from 'axios';
-import {storeData} from '../../utils/localStorage';
+import {storeData, getData} from '../../utils/localStorage';
 import {showMessage} from 'react-native-flash-message';
 
 export default function Login({navigation}) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const [loading, setLoading] = useState(false);
+  const [token, setToken] = useState('');
   const [data, setData] = useState({
     email: null,
     password: null,
   });
+
+  useEffect(() => {
+    getData('token').then(res => {
+      console.log('data token,', res);
+      setToken(res.token);
+    });
+  }, []);
 
   // login ok
   const masuk = () => {
@@ -43,6 +51,15 @@ export default function Login({navigation}) {
             });
           } else {
             storeData('user', res.data);
+            axios
+              .post('https://zavalabs.com/pembantuku/api/update_token.php', {
+                id_member: res.data.id,
+                token: token,
+              })
+              .then(res => {
+                console.log('update token', res);
+              });
+
             navigation.replace('MainApp');
           }
         });

@@ -21,7 +21,7 @@ export default function Splash({navigation}) {
 
   useEffect(() => {
     const unsubscribe = getData('user').then(res => {
-      console.log(res);
+      // console.log(res);
       if (!res) {
         // console.log('beum login');
 

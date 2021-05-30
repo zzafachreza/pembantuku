@@ -45,15 +45,10 @@ export default function Register({navigation}) {
           }, 1200);
         } else {
           setTimeout(() => {
-            setLoading(false);
             navigation.replace('Success', {
               messege: res.data,
             });
           }, 1200);
-          showMessage({
-            message: res.data,
-            type: 'success',
-          });
         }
       });
   };
@@ -153,7 +148,7 @@ export default function Register({navigation}) {
           loop
           style={{
             flex: 1,
-            backgroundColor: colors.white,
+            backgroundColor: colors.primary,
           }}
         />
       )}

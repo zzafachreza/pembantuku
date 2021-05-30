@@ -19,7 +19,7 @@ export default function Berita({navigation, route}) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const item = route.params;
-  console.log('berita', item);
+  // console.log('berita', item);
 
   return (
     <SafeAreaView

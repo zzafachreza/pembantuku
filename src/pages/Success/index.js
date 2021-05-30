@@ -39,7 +39,7 @@ export default function Success({navigation, route}) {
         <LottieView
           source={require('../../assets/success.json')}
           autoPlay
-          loop
+          loop={false}
         />
         <Animated.Text
           style={{

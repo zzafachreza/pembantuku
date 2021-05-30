@@ -16,7 +16,7 @@ import {color} from 'react-native-reanimated';
 
 export default function Pembantu({navigation, route}) {
   const item = route.params;
-  console.log('detail pembantu', item);
+  // console.log('detail pembantu', item);
   navigation.setOptions({title: item.nama_lengkap});
 
   const MyListData = ({label, value}) => {

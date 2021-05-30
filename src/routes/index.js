@@ -225,28 +225,9 @@ export default function Router() {
       <Stack.Screen
         name="Pembantu"
         component={Pembantu}
-        options={({route, navigation}) => ({
-          title: 'Detail Pembantu',
-          headerTintColor: 'white',
-          headerStyle: {
-            backgroundColor: colors.primary,
-            elevation: 0, // remove shadow on Android
-          },
-          cardStyleInterpolator: ({current, layouts}) => {
-            return {
-              cardStyle: {
-                transform: [
-                  {
-                    translateX: current.progress.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [layouts.screen.width, 0],
-                    }),
-                  },
-                ],
-              },
-            };
-          },
-        })}
+        options={{
+          headerShown: false,
+        }}
       />
 
       <Stack.Screen
