@@ -163,10 +163,10 @@ export default function Pembantu({navigation, route}) {
       <MyButton
         fontWeight="bold"
         radius={0}
-        title="BOOKING"
+        title="SELANJUTNYA"
         warna={colors.primary}
         onPress={() => {
-          navigation.navigate('PembantuSelesai', item);
+          navigation.navigate('PembantuKonfirmasi', item);
         }}
       />
     </SafeAreaView>

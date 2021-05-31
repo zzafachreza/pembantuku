@@ -22,6 +22,7 @@ import Kategori from './Kategori';
 import PembantuSelsai from './PembantuSelesai';
 import ListData from './ListData';
 import Notifikasi from './Notifikasi';
+import PembantuKonfirmasi from './PembantuKonfirmasi';
 export {
   Splash,
   GetStarted,
@@ -47,4 +48,5 @@ export {
   PembantuSelsai,
   ListData,
   Notifikasi,
+  PembantuKonfirmasi,
 };

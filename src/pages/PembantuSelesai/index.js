@@ -29,6 +29,10 @@ export default function PembantuSelesai({navigation, route}) {
         nama_lengkap: item.nama_lengkap,
         sebagai_apa: item.sebagai_apa,
         id_pelamar: item.id,
+        paket: item.paket,
+        paket_harga: item.paketHarga,
+        tanggal_antar: item.tanggalAntar,
+        alamat_antar: item.alamatAntar,
       };
 
       axios

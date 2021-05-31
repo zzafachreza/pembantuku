@@ -56,6 +56,8 @@ export default function ListData() {
     sebagai_apa,
     kode,
     gaji,
+    paket,
+    paket_harga,
   }) => {
     return (
       <View
@@ -125,13 +127,33 @@ export default function ListData() {
               fontSize: 18,
             }}>
             {nama_pembantu}
+            {' ( '}
+            <Text
+              style={{
+                fontFamily: fonts.secondary[400],
+                fontSize: 18,
+                color: colors.primary,
+              }}>
+              {sebagai_apa}
+            </Text>
+            {' ) '}
           </Text>
           <Text
             style={{
               fontFamily: fonts.secondary[400],
               fontSize: 18,
             }}>
-            {sebagai_apa}
+            Gaji yang diharapkan
+            {' - '}
+            <Text
+              style={{
+                textAlign: 'right',
+                fontFamily: fonts.secondary[600],
+                fontSize: 18,
+                color: colors.primary,
+              }}>
+              Rp. {gaji}
+            </Text>
           </Text>
         </View>
 
@@ -142,9 +164,10 @@ export default function ListData() {
           <View style={{flex: 1, padding: 10}}>
             <Text
               style={{
-                fontFamily: fonts.secondary[400],
+                fontFamily: fonts.secondary[600],
+                fontSize: 18,
               }}>
-              Gaji yang diharapkan
+              {paket}
             </Text>
           </View>
           <View>
@@ -153,11 +176,11 @@ export default function ListData() {
                 borderBottomRightRadius: 10,
                 backgroundColor: colors.secondary,
                 fontFamily: fonts.secondary[600],
-                fontSize: 15,
+                fontSize: 18,
                 color: colors.white,
                 padding: 10,
               }}>
-              Rp. {gaji}
+              Rp. {paket_harga}
             </Text>
           </View>
         </View>
@@ -173,6 +196,7 @@ export default function ListData() {
       <ScrollView
         style={{
           padding: 10,
+          flex: 1,
         }}>
         {data.map(item => {
           return (
@@ -183,10 +207,37 @@ export default function ListData() {
               nama_pembantu={item.nama_pekerja}
               status={item.status}
               sebagai_apa={item.sebagai_apa}
+              paket={item.paket}
+              paket_harga={item.paket_harga}
             />
           );
         })}
       </ScrollView>
+      <View
+        style={{
+          padding: 10,
+        }}>
+        <Text
+          style={{
+            fontFamily: fonts.secondary[600],
+          }}>
+          Note :{' '}
+        </Text>
+        <Text
+          style={{
+            fontFamily: fonts.secondary[400],
+          }}>
+          Belum termasuk biaya transport ke rumah majikan dan biaya rapid
+          antigen
+        </Text>
+        <Text
+          style={{
+            fontFamily: fonts.secondary[400],
+          }}>
+          semua pekerja sudah di karantina dan rapid antigen ketika datang ke
+          penampungan
+        </Text>
+      </View>
     </SafeAreaView>
   );
 }
