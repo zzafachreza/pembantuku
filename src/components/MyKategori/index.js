@@ -1,9 +1,17 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  Dimensions,
+} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
 import {colors} from '../../utils/colors';
-
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 const IconCategory = ({img, title, onPress, iconname}) => {
   return (
     <TouchableOpacity
@@ -31,7 +39,7 @@ const IconCategory = ({img, title, onPress, iconname}) => {
           type="ionicon"
           name={iconname}
           color={colors.secondary}
-          size={40}
+          size={windowWidth / 13}
         />
       </View>
       <View
@@ -43,7 +51,7 @@ const IconCategory = ({img, title, onPress, iconname}) => {
             fontFamily: 'Montserrat-SemiBold',
             // color: '#F8781D',
             color: colors.secondary,
-            fontSize: 12,
+            fontSize: windowWidth / 45,
             textAlign: 'center',
           }}>
           {title}

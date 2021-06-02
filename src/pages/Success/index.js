@@ -44,7 +44,7 @@ export default function Success({navigation, route}) {
         <Animated.Text
           style={{
             fontFamily: fonts.secondary[400],
-            fontSize: 20,
+            fontSize: windowWidth / 22,
             color: 'black',
             bottom: txt,
           }}>

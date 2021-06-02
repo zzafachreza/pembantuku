@@ -33,6 +33,7 @@ export default function PembantuSelesai({navigation, route}) {
         paket_harga: item.paketHarga,
         tanggal_antar: item.tanggalAntar,
         alamat_antar: item.alamatAntar,
+        jam_antar: item.jamAntar,
       };
 
       axios
@@ -77,7 +78,7 @@ export default function PembantuSelesai({navigation, route}) {
             // marginTop: 5,
             // marginBottom: 5,
             fontFamily: fonts.secondary[600],
-            fontSize: 20,
+            fontSize: windowWidth / 22,
             color: 'black',
             textAlign: 'center',
           }}>
@@ -87,7 +88,7 @@ export default function PembantuSelesai({navigation, route}) {
           style={{
             marginTop: 10,
             fontFamily: fonts.secondary[400],
-            fontSize: 20,
+            fontSize: windowWidth / 22,
             color: 'black',
             textAlign: 'center',
             // bottom: txt,

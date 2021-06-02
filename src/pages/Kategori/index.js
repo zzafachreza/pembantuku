@@ -11,6 +11,7 @@ import {
   StatusBar,
   Image,
   ScrollView,
+  Dimensions,
 } from 'react-native';
 import {MyHeader} from '../../components';
 import {Icon} from 'react-native-elements';
@@ -24,6 +25,9 @@ import 'intl/locale-data/jsonp/en';
 export default function Kategori({navigation, route}) {
   const kategori = route.params.kategori;
   const menu = route.params.menu;
+
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
 
   useEffect(() => {
     axios

@@ -1,11 +1,18 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {colors} from '../../utils/colors';
 
 export default function BottomNavigator({state, descriptors, navigation}) {
   const focusedOptions = descriptors[state.routes[state.index].key].options;
-
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
   if (focusedOptions.tabBarVisible === false) {
     return null;
   }
@@ -104,11 +111,13 @@ export default function BottomNavigator({state, descriptors, navigation}) {
                   <Icon
                     name={iconName}
                     type="ionicon"
+                    size={windowWidth / 20}
                     color={isFocused ? colors.primary : '#919095'}
                   />
                 )}
                 <Text
                   style={{
+                    fontSize: windowWidth / 45,
                     color:
                       isFocused && iconName == 'barcode'
                         ? 'white'

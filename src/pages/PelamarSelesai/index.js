@@ -47,7 +47,7 @@ export default function PelamarSelesai({navigation, route}) {
         <Animated.Text
           style={{
             fontFamily: fonts.secondary[400],
-            fontSize: 20,
+            fontSize: windowWidth / 20,
             color: 'black',
             bottom: txt,
           }}>

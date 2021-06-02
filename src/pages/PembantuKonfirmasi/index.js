@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -24,20 +24,57 @@ export default function Pembantu({navigation, route}) {
   // console.log('detail pembantu', item);
   navigation.setOptions({title: item.nama_lengkap});
 
-  const [tanggalAntar, setTanggalAntar] = useState('');
+  const Today = new Date();
+  const dd = String(Today.getDate()).padStart(2, '0');
+  const mm = String(Today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  const yyyy = Today.getFullYear();
+  const jam = Today.getHours();
+  const menit = Today.getMinutes();
+  const detik = Today.getUTCSeconds();
+  const today = `${dd}/${mm}/${yyyy}`;
+  const TodayTime = `${jam}:${menit}`;
+
+  const [tanggalAntar, setTanggalAntar] = useState(today);
+  const [jamAntar, setJamAntar] = useState(TodayTime);
   const [alamatAntar, setAlamatAntar] = useState('');
   const [paket, setPaket] = useState('');
   const [paketHarga, setPaketHarga] = useState('');
-  const [warna1, setWarna1] = useState(false);
+  const [warna1, setWarna1] = useState(true);
   const [warna2, setWarna2] = useState(false);
   const [warna3, setWarna3] = useState(false);
   // datepicker
 
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
+  const [mode2, setMode2] = useState('time');
   const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
 
   const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+
+    // alert(currentDate);
+
+    const Today = new Date(currentDate);
+    const dd = String(Today.getDate()).padStart(2, '0');
+    const mm = String(Today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = Today.getFullYear();
+    const jam = Today.getHours();
+    const menit = Today.getMinutes();
+    const detik = Today.getUTCSeconds();
+    const today = `${dd}/${mm}/${yyyy}`;
+
+    setTanggalAntar(`${dd}/${mm}/${yyyy}`);
+    setJamAntar(`${jam}:${menit}`);
+    setData({
+      ...data,
+      tanggalAntar: `${yyyy}-${mm}-${dd}`,
+    });
+  };
+
+  const onChangeTime = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
@@ -60,14 +97,32 @@ export default function Pembantu({navigation, route}) {
     });
   };
 
+  const showDatepicker = () => {
+    showMode('date');
+  };
   const showMode = currentMode => {
     setShow(true);
     setMode(currentMode);
   };
 
-  const showDatepicker = () => {
-    showMode('date');
+  const showTimepicker = () => {
+    showMode2('time');
   };
+  const showMode2 = currentMode => {
+    setShow2(true);
+    setMode2(currentMode);
+  };
+
+  useEffect(() => {
+    setData({
+      ...data,
+      paket: 'PAKET A',
+      paketHarga: 2500000,
+      tanggalAntar: `${yyyy}-${mm}-${dd}`,
+      jamAntar: `${jam}:${menit}`,
+    });
+  }, []);
+
   const MyListData = ({label, value}) => {
     return (
       <View
@@ -395,13 +450,37 @@ export default function Pembantu({navigation, route}) {
             <DateTimePicker
               testID="dateTimePicker"
               value={date}
-              mode={mode}
+              mode="date"
               format="YYYY-MM-DD"
               is24Hour={true}
               display="default"
               onChange={onChange}
             />
           )}
+          <MyGap jarak={10} />
+          <MyInput
+            onFocus={showTimepicker}
+            label="Jam Antar"
+            iconname="time"
+            value={data.jamAntar}
+            onChangeText={value =>
+              setData({
+                ...data,
+                jamAntar: value,
+              })
+            }
+          />
+          {/* {show2 && (
+            <DateTimePicker
+              testID="dateTimePicker2"
+              value={date}
+              mode="time"
+              is24Hour={true}
+              display="default"
+              // onChange={() => onChangeTime}
+            />
+          )} */}
+
           <MyGap jarak={10} />
           <MyInput
             value={data.alamatAntar}
@@ -422,7 +501,7 @@ export default function Pembantu({navigation, route}) {
         title="BOOKING"
         warna={colors.primary}
         onPress={() => {
-          //   console.log(data);
+          console.log(data);
           navigation.navigate('PembantuSelesai', data);
         }}
       />

@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, SafeAreaView, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  ScrollView,
+  Image,
+} from 'react-native';
 import {tan} from 'react-native-reanimated';
 import {colors} from '../../utils/colors';
 import {fonts} from '../../utils/fonts';
@@ -63,9 +70,11 @@ export default function ListData() {
       <View
         style={{
           margin: 5,
-          borderRadius: 10,
+          borderTopRightRadius: 10,
+          borderTopLeftRadius: 10,
           borderColor: colors.primary,
           borderWidth: 1,
+          backgroundColor: colors.white,
         }}>
         <View
           style={{
@@ -173,7 +182,7 @@ export default function ListData() {
           <View>
             <Text
               style={{
-                borderBottomRightRadius: 10,
+                // borderBottomRightRadius: 10,
                 backgroundColor: colors.secondary,
                 fontFamily: fonts.secondary[600],
                 fontSize: 18,
@@ -184,6 +193,51 @@ export default function ListData() {
             </Text>
           </View>
         </View>
+        {status === 'BOOKED' && (
+          <View>
+            <View
+              style={{
+                flexDirection: 'row',
+                borderTopWidth: 1,
+                marginTop: 5,
+                borderTopColor: colors.primary,
+                backgroundColor: colors.primary,
+              }}>
+              <Text
+                style={{
+                  color: colors.white,
+                  fontFamily: fonts.secondary[600],
+                  padding: 10,
+                }}>
+                Transfer Ke :
+              </Text>
+              <Image
+                source={require('../../assets/bca.png')}
+                style={{width: 100, height: 30, margin: 10}}
+              />
+            </View>
+            <Text
+              style={{
+                color: colors.black,
+                fontSize: 16,
+                fontFamily: fonts.secondary[600],
+                padding: 10,
+              }}>
+              No.Acc : 8525 001 594
+            </Text>
+            <Text
+              style={{
+                // borderTopRightRadius: 10,
+                // backgroundColor: colors.primary,
+                color: colors.black,
+                fontFamily: fonts.secondary[600],
+                fontSize: 16,
+                padding: 10,
+              }}>
+              Atn : Feny Taslim
+            </Text>
+          </View>
+        )}
       </View>
     );
   };
